@@ -90,30 +90,30 @@ Astraeus deploys two contracts in parallel:
 - **`$ASTR`** — ERC-20, the liquid market instrument (FDV, trading, treasury denomination at launch).
 - **`Astraeus Token`** — ERC-721 collection, each token representing one physical coin, gated by EIP-5791 scan-to-claim semantics.
 
-Each `Astraeus Token` NFT owns an **ERC-6551 token-bound account** [[2]](#ref-2) that receives a sealed `$ASTR` allocation plus phase-specific mission NFTs (flight telemetry, drop coordinates, orbital imagery, Mars arrival data) as each phase completes.
+Each `Astraeus Token` NFT owns an **ERC-6551 token-bound account** [^2] that receives a sealed `$ASTR` allocation plus phase-specific mission NFTs (flight telemetry, drop coordinates, orbital imagery, Mars arrival data) as each phase completes.
 
 ### 2.2 Standards stack
 
-| Standard           | Role                                               |
-| ------------------ | -------------------------------------------------- |
-| ERC-20             | Liquidity, fungibility, treasury                   |
-| ERC-721            | Collectible coin, 1:1 physical binding, tradable   |
-| EIP-5791[[3]](#ref-3) | Cryptographic physical-backed token linkage        |
-| ERC-6551[[2]](#ref-2) | Per-coin wallet for airdrops and mission artifacts |
+| Standard     | Role                                               |
+| ------------ | -------------------------------------------------- |
+| ERC-20       | Liquidity, fungibility, treasury                   |
+| ERC-721      | Collectible coin, 1:1 physical binding, tradable   |
+| EIP-5791[^3] | Cryptographic physical-backed token linkage        |
+| ERC-6551[^2] | Per-coin wallet for airdrops and mission artifacts |
 
 ### 2.3 Scan-to-claim flow
 
 1. Holder acquires a sealed `Astraeus Token`.
-2. Holder taps the coin via NFC; the embedded HaLo chip [[5]](#ref-5) signs a block-hash challenge.
+2. Holder taps the coin via NFC; the embedded HaLo chip [^5] signs a block-hash challenge.
 3. The signed challenge is submitted on-chain; EIP-5791 proves physical possession without a trusted server.
 4. The NFT's token-bound account unlocks the sealed `$ASTR` allocation and Phase-1 mission NFT.
 5. Subsequent phase airdrops are delivered into the same TBA and unlock on re-scan.
 
-This eliminates the Casascius bearer-instrument failure mode [[6]](#ref-6) — no spendable private key is ever stored on the coin. The chip signs; the NFT holds the wallet.
+This eliminates the Casascius bearer-instrument failure mode [^6] — no spendable private key is ever stored on the coin. The chip signs; the NFT holds the wallet.
 
 ### 2.4 Exclusions
 
-ERC-404 is experimental, non-standardized, and its fractionalization mechanic is incompatible with a 1:1 physical object [[4]](#ref-4). Astraeus does not use it.
+ERC-404 is experimental, non-standardized, and its fractionalization mechanic is incompatible with a 1:1 physical object [^4]. Astraeus does not use it.
 
 ---
 
@@ -142,7 +142,7 @@ Tamper-evident holographic seals (NovaVision, Indigo Hologram): \$0.15–\$0.60 
 
 ### 3.3 Manufacturing reference
 
-Chip architecture follows the Azuki PBT / Kong Land precedent [[5]](#ref-5)[[7]](#ref-7): Arx Research HaLo BEAN chip embedded under the holographic seal, signing EIP-5791 challenges. Minting is outsourced to established custom-coin vendors with chip insertion QA integrated into the production line.
+Chip architecture follows the Azuki PBT / Kong Land precedent [^7]: Arx Research HaLo BEAN chip embedded under the holographic seal, signing EIP-5791 challenges. Minting is outsourced to established custom-coin vendors with chip insertion QA integrated into the production line.
 
 ---
 
@@ -167,7 +167,7 @@ Chip architecture follows the Azuki PBT / Kong Land precedent [[5]](#ref-5)[[7]]
 
 ### 4.3 Fair launch
 
-Launch venue: **Flaunch on Base** (Uniswap v4 with Progressive Bid Wall hook) [[9]](#ref-9), followed by a canonical Uniswap v4 mainnet pool. 30-minute fixed-price window with equal-access mechanics and anti-bot rate limits. The 8% LP allocation is locked permanently via on-chain renouncement.
+Launch venue: **Flaunch on Base** (Uniswap v4 with Progressive Bid Wall hook) [^9], followed by a canonical Uniswap v4 mainnet pool. 30-minute fixed-price window with equal-access mechanics and anti-bot rate limits. The 8% LP allocation is locked permanently via on-chain renouncement.
 
 ### 4.4 Team vesting
 
@@ -202,17 +202,17 @@ A 1500 g latex weather balloon ascends to approximately 32 km under a GoPro Hero
 
 Stratospheric hobby-budget live HD video is constrained by three facts:
 
-| Link                   | Limit                                                | Usable for                      |
-| ---------------------- | ---------------------------------------------------- | ------------------------------- |
-| LTE 4G/5G              | Dies ~5 km (base stations beam downward)[[10]](#ref-10) | Ascent/descent video below 5 km |
-| Iridium RockBLOCK 9603 | 340-byte messages[[11]](#ref-11)                        | Telemetry only, no imagery      |
-| Starlink Mini          | Not certified for 30 km, moving, -60 °C[[12]](#ref-12) | Experimental secondary          |
+| Link                   | Limit                                         | Usable for                      |
+| ---------------------- | --------------------------------------------- | ------------------------------- |
+| LTE 4G/5G              | Dies ~5 km (base stations beam downward)[^10] | Ascent/descent video below 5 km |
+| Iridium RockBLOCK 9603 | 340-byte messages[^11]                        | Telemetry only, no imagery      |
+| Starlink Mini          | Not certified for 30 km, moving, -60 °C[^12] | Experimental secondary          |
 
 Mission plan delivers: LTE live video on ascent/descent, Iridium telemetry for the full flight, 4K onboard recording to SD, and a post-flight HD cut published within 60 minutes of recovery.
 
 ### 5.3 Recovery architecture
 
-Three redundant trackers: Iridium RockBLOCK (primary), 2-meter APRS beacon (requires ham-licensed operator), and Garmin inReach Mini 2 (backup). Ground recovery by 2–3 team members with a 4×4 and a DJI Mini drone for terminal descent acquisition. Flight trajectory verified pre-launch via CUSF / SondeHub predictor [[13]](#ref-13).
+Three redundant trackers: Iridium RockBLOCK (primary), 2-meter APRS beacon (requires ham-licensed operator), and Garmin inReach Mini 2 (backup). Ground recovery by 2–3 team members with a 4×4 and a DJI Mini drone for terminal descent acquisition. Flight trajectory verified pre-launch via CUSF / SondeHub predictor [^13].
 
 ### 5.4 Budget
 
@@ -242,7 +242,7 @@ Launch broadcast on YouTube Live with telemetry overlay and simultaneous Twitch 
 
 Phase 2 executes in two sub-phases:
 
-**Phase 2a — PocketQube rideshare.** A 1P PocketQube (5 cm × 5 cm × 5 cm, ~250 g) on SpaceX Transporter via Alba Orbital [[15]](#ref-15). Payload carries a `Astraeus Token` plus a low-rate camera. Store-and-forward imagery returns via Alba's ground network. Establishes "coin in orbit" narrative at minimal cost.
+**Phase 2a — PocketQube rideshare.** A 1P PocketQube (5 cm × 5 cm × 5 cm, ~250 g) on SpaceX Transporter via Alba Orbital [^15]. Payload carries a `Astraeus Token` plus a low-rate camera. Store-and-forward imagery returns via Alba's ground network. Establishes "coin in orbit" narrative at minimal cost.
 
 **Phase 2b — 3U CubeSat.** A 3U spacecraft (10 × 10 × 30 cm, ~4 kg) on Transporter into a ~500 km sun-synchronous orbit. Earth-imaging payload with S-band downlink. Six-month primary mission producing a daily compressed video cut premiered on YouTube, plus monthly imagery NFTs airdropped to every holder.
 
@@ -250,7 +250,7 @@ Phase 2 executes in two sub-phases:
 
 | Line                                           | Low                | High                |
 | ---------------------------------------------- | ------------------ | ------------------- |
-| Alba Orbital 1P launch slot[[15]](#ref-15)        | \$27,000           | \$30,000            |
+| Alba Orbital 1P launch slot[^15]               | \$27,000           | \$30,000            |
 | 1P bus, power, camera, radio                   | \$15,000           | \$40,000            |
 | Licensing and ground segment                   | \$10,000           | \$25,000            |
 | Implementation cost                            | \$20,000           | \$45,000            |
@@ -263,11 +263,11 @@ Phase 2 executes in two sub-phases:
 | Line                                                                                   | Low                 | High                  |
 | -------------------------------------------------------------------------------------- | ------------------- | --------------------- |
 | 3U bus + payload (turnkey or IFIN-HH-integrated)[[8]](#8-research-collaboration--ifin-hh) | \$100,000           | \$250,000             |
-| Transporter launch (~4 kg)[[20]](#ref-20)                                                 | \$140,000           | \$200,000             |
+| Transporter launch (~4 kg)[^20]                                                        | \$140,000           | \$200,000             |
 | S-band downlink hardware                                                               | \$30,000            | \$80,000              |
 | Integration, environmental test                                                        | \$50,000            | \$120,000             |
-| Licensing (FCC Part 5, ITU, NOAA CRSRA)[[16]](#ref-16)                                    | \$25,000            | \$70,000              |
-| Ground segment (AWS Ground Station + KSAT, 6 months)[[19]](#ref-19)                       | \$15,000            | \$35,000              |
+| Licensing (FCC Part 5, ITU, NOAA CRSRA)[^16]                                           | \$25,000            | \$70,000              |
+| Ground segment (AWS Ground Station + KSAT, 6 months)[^19]                              | \$15,000            | \$35,000              |
 | Implementation cost                                                                    | \$120,000           | \$125,000             |
 | Contingency                                                                            | \$20,000            | \$20,000              |
 | **Phase 2b baseline total**                                                      | **\$500,000** | **\$900,000**   |
@@ -279,7 +279,7 @@ At 5 Mbps S-band with four 8-minute passes per day: approximately 9.6 Gbit/day r
 
 ### 6.5 Regulatory critical path
 
-FCC Part 5 experimental licensing takes 6–18 months [[16]](#ref-16). Filing opens 18 months before scheduled launch. Orbital debris mitigation plan compliant with the FCC 5-year deorbit rule [[17]](#ref-17); a 3U at 500 km naturally deorbits within that window. Export-controls classification under EAR (not ITAR) for modern CubeSats per 2014 reforms and 2024 License Exception CSA [[18]](#ref-18).
+FCC Part 5 experimental licensing takes 6–18 months [^16]. Filing opens 18 months before scheduled launch. Orbital debris mitigation plan compliant with the FCC 5-year deorbit rule [^17]; a 3U at 500 km naturally deorbits within that window. Export-controls classification under EAR (not ITAR) for modern CubeSats per 2014 reforms and 2024 License Exception CSA [^18].
 
 ---
 
@@ -291,13 +291,13 @@ A 6U interplanetary CubeSat carrying a `Astraeus Token` launches as a secondary 
 
 ### 7.2 Launch window
 
-Mars Hohmann transfers open every ~26 months. The **2028 window** opens late October 2028 and closes mid-November 2028 [[21]](#ref-21). Development from Q2 2026 launch yields ~2.5 years of spacecraft and regulatory schedule — tight but feasible for a 6U flyby mission built on commercial off-the-shelf subsystems and riding as a secondary payload on an existing Mars program.
+Mars Hohmann transfers open every ~26 months. The **2028 window** opens late October 2028 and closes mid-November 2028 [^21]. Development from Q2 2026 launch yields ~2.5 years of spacecraft and regulatory schedule — tight but feasible for a 6U flyby mission built on commercial off-the-shelf subsystems and riding as a secondary payload on an existing Mars program.
 
 ### 7.3 Precedent
 
-JPL's MarCO mission (2018) flew two 6U CubeSats to Mars on flyby trajectory, performing EDL relay for InSight, at a **total program cost of $18.5M** in 2018 dollars [[1]](#ref-1). MarCO established that a 6U-class Mars mission is technically achievable and sets the engineering baseline for Phase 3. Astraeus targets a lower cost band by leveraging: (i) a host launch vehicle supplying the trans-Mars injection delta-v, (ii) commercial off-the-shelf deep-space subsystems matured since 2018, and (iii) research partnership with IFIN-HH for environmental qualification and scientific payload integration [[8]](#8-research-collaboration--ifin-hh).
+JPL's MarCO mission (2018) flew two 6U CubeSats to Mars on flyby trajectory, performing EDL relay for InSight, at a **total program cost of $18.5M** in 2018 dollars [^1]. MarCO established that a 6U-class Mars mission is technically achievable and sets the engineering baseline for Phase 3. Astraeus targets a lower cost band by leveraging: (i) a host launch vehicle supplying the trans-Mars injection delta-v, (ii) commercial off-the-shelf deep-space subsystems matured since 2018, and (iii) research partnership with IFIN-HH for environmental qualification and scientific payload integration [[8]](#8-research-collaboration--ifin-hh).
 
-Rocket Lab's proposed Mars Telecommunications Orbiter under NASA's $700M Mars Telecom Network contract [[23]](#ref-23) and the Impulse Space + Relativity Mars lander program [[24]](#ref-24) are both candidate 2028-window rideshare partners.
+Rocket Lab's proposed Mars Telecommunications Orbiter under NASA's $700M Mars Telecom Network contract [^23] and the Impulse Space + Relativity Mars lander program [^24] are both candidate 2028-window rideshare partners.
 
 ### 7.4 Spacecraft architecture
 
@@ -305,20 +305,20 @@ Rocket Lab's proposed Mars Telecommunications Orbiter under NASA's $700M Mars Te
 
 ### 7.5 Budget
 
-| Line                                                                            | Low                   | High                   |
-| ------------------------------------------------------------------------------- | --------------------- | ---------------------- |
-| 6U deep-space bus (radiation-tolerant, COTS + qualified)                        | \$1,500,000           | \$3,000,000            |
-| Propulsion (green monoprop + cold gas ACS)                                      | \$500,000             | \$1,000,000            |
-| X-band transponder + high-gain antenna                                          | \$400,000             | \$800,000              |
-| Payload (HD camera, coin display, Mars imager)                                  | \$200,000             | \$500,000              |
-| Launch to TMI (secondary on host Mars mission)[[20]](#ref-20)                      | \$2,000,000           | \$4,000,000            |
-| Deep-space ground services (commercial DSN, 12 months)[[25]](#ref-25)              | \$300,000             | \$800,000              |
-| Licensing (FCC Part 25, NOAA CRSRA, EAR classification)[[16]](#ref-16)[[18]](#ref-18) | \$150,000             | \$300,000              |
-| Insurance (optional)                                                            | \$0                   | \$500,000              |
-| Implementation cost                                                             | \$2,000,000           | \$3,400,000            |
-| Contingency (~10%)                                                              | \$950,000             | \$700,000              |
-| **Phase 3 baseline total**                                                | **\$8,000,000** | **\$15,000,000** |
-| **Phase 3 risk-adjusted range (±25%)**                                   | **\$6,000,000** | **\$18,750,000** |
+| Line                                                         | Low                   | High                   |
+| ------------------------------------------------------------ | --------------------- | ---------------------- |
+| 6U deep-space bus (radiation-tolerant, COTS + qualified)     | \$1,500,000           | \$3,000,000            |
+| Propulsion (green monoprop + cold gas ACS)                   | \$500,000             | \$1,000,000            |
+| X-band transponder + high-gain antenna                       | \$400,000             | \$800,000              |
+| Payload (HD camera, coin display, Mars imager)               | \$200,000             | \$500,000              |
+| Launch to TMI (secondary on host Mars mission)[^20]          | \$2,000,000           | \$4,000,000            |
+| Deep-space ground services (commercial DSN, 12 months)[^25]  | \$300,000             | \$800,000              |
+| Licensing (FCC Part 25, NOAA CRSRA, EAR classification)[^18] | \$150,000             | \$300,000              |
+| Insurance (optional)                                         | \$0                   | \$500,000              |
+| Implementation cost                                          | \$2,000,000           | \$3,400,000            |
+| Contingency (~10%)                                           | \$950,000             | \$700,000              |
+| **Phase 3 baseline total**                             | **\$8,000,000** | **\$15,000,000** |
+| **Phase 3 risk-adjusted range (±25%)**                | **\$6,000,000** | **\$18,750,000** |
 
 ### 7.6 Treasury sizing
 
@@ -388,23 +388,23 @@ Any residual treasury at program end (post-Phase-3 completion) is distributed pr
 
 ### 10.1 Securities posture
 
-Astraeus is structured as a collectible and a community-funded engineering program, not an investment product. Governance votes gate treasury disbursement; mission progression is not promoted as a `$ASTR` price driver. Team allocation is capped at 5% with on-chain vesting. Securities counsel memo is completed pre-launch under the 2025 SEC guidance framework articulated by Chairman Atkins [[8]](#ref-8), which distinguishes digital collectibles and credentials from securities while retaining the Howey test for profit-expectation analysis.
+Astraeus is structured as a collectible and a community-funded engineering program, not an investment product. Governance votes gate treasury disbursement; mission progression is not promoted as a `$ASTR` price driver. Team allocation is capped at 5% with on-chain vesting. Securities counsel memo is completed pre-launch under the 2025 SEC guidance framework articulated by Chairman Atkins [^8], which distinguishes digital collectibles and credentials from securities while retaining the Howey test for profit-expectation analysis.
 
 ### 10.2 Money transmission
 
-The scan-to-claim PBT architecture stores no spendable private key on the physical coin. The chip signs EIP-5791 challenges; the NFT's ERC-6551 token-bound account holds the wallet. This places the coin outside the Casascius bearer-instrument fact pattern [[6]](#ref-6) that triggered FinCEN money-transmission classification in 2013.
+The scan-to-claim PBT architecture stores no spendable private key on the physical coin. The chip signs EIP-5791 challenges; the NFT's ERC-6551 token-bound account holds the wallet. This places the coin outside the Casascius bearer-instrument fact pattern [^6] that triggered FinCEN money-transmission classification in 2013.
 
 ### 10.3 Aerospace licensing
 
-| Phase | Authority        | Instrument                                                                                   |
-| ----- | ---------------- | -------------------------------------------------------------------------------------------- |
-| 1     | FAA              | 14 CFR Part 101 Subpart D balloon rules; NOTAM filing[[14]](#ref-14)                            |
-| 2     | FCC + ITU + NOAA | Part 5 experimental or Part 25 commercial; ITU filing via FCC; CRSRA for imaging[[16]](#ref-16) |
-| 3     | FCC + NOAA + BIS | Part 25; CRSRA; EAR classification with possible ITAR review for propulsion[[18]](#ref-18)      |
+| Phase | Authority        | Instrument                                                                            |
+| ----- | ---------------- | ------------------------------------------------------------------------------------- |
+| 1     | FAA              | 14 CFR Part 101 Subpart D balloon rules; NOTAM filing[^14]                            |
+| 2     | FCC + ITU + NOAA | Part 5 experimental or Part 25 commercial; ITU filing via FCC; CRSRA for imaging[^16] |
+| 3     | FCC + NOAA + BIS | Part 25; CRSRA; EAR classification with possible ITAR review for propulsion[^18]      |
 
 ### 10.4 Export controls
 
-Modern CubeSats classify under EAR 9A515.a.1, not ITAR USML Category IV, after 2014 reforms and 2024 License Exception CSA rulemaking [[18]](#ref-18). Propulsion and attitude-control subsystems may still touch ITAR; formal classification is performed per spacecraft build by dedicated export-controls counsel engaged under the implementation cost line.
+Modern CubeSats classify under EAR 9A515.a.1, not ITAR USML Category IV, after 2014 reforms and 2024 License Exception CSA rulemaking [^18]. Propulsion and attitude-control subsystems may still touch ITAR; formal classification is performed per spacecraft build by dedicated export-controls counsel engaged under the implementation cost line.
 
 ---
 
@@ -473,58 +473,58 @@ Modern CubeSats classify under EAR 9A515.a.1, not ITAR USML Category IV, after 2
 
 ## 13. References
 
-`<a id="ref-1"></a>`**[1]** JPL. *Mars Cube One (MarCO)*. https://www.jpl.nasa.gov/missions/mars-cube-one-marco/ — MarCO total program cost \$18.5M (2018).
-
-`<a id="ref-2"></a>`**[2]** EIP-6551: *Non-fungible Token Bound Accounts*. https://eips.ethereum.org/EIPS/eip-6551
-
-`<a id="ref-3"></a>`**[3]** EIP-5791: *Physical Backed Tokens*. https://github.com/chiru-labs/PBT ; Azuki, *Introducing PBT*. https://www.azuki.com/en/blog/pbt
-
-`<a id="ref-4"></a>`**[4]** Cointelegraph. *ERC-404 Token Standard Explained*. https://cointelegraph.com/explained/erc-404-token-standard-explained
-
-`<a id="ref-5"></a>`**[5]** Arx Research HaLo chip, Kong Land. https://medium.com/kong-land-embassy/eternal-physical-crypto-b487ee8a1553
-
-`<a id="ref-6"></a>`**[6]** Bitcoin Wiki. *Casascius physical bitcoins*. https://en.bitcoin.it/wiki/Casascius_physical_bitcoins
-
-`<a id="ref-7"></a>`**[7]** Kong.cash. https://kong.cash/ ; OpenSea ERC-6551 explainer. https://opensea.io/learn/token/what-is-erc-6551
-
-`<a id="ref-8"></a>`**[8]** SEC Chairman Atkins. *The SEC's Approach to Digital Assets: Inside Project Crypto*. https://www.sec.gov/newsroom/speeches-statements/atkins-111225-secs-approach-digital-assets-inside-project-crypto ; Skadden. *Howey's Still Here*. https://www.skadden.com/insights/publications/2025/08/howeys-still-here
-
-`<a id="ref-9"></a>`**[9]** Blocmates. *Flaunch — Redefining Launchpads with Fixed-Price Fair Launch*. https://www.blocmates.com/articles/flaunch-redefining-launchpads-with-fixed-price-fair-launch
-
-`<a id="ref-10"></a>`**[10]** Hackaday. *Flying Cell Towers for Lower Latency*. https://hackaday.com/2026/04/06/flying-cell-towers-for-lower-latency/
-
-`<a id="ref-11"></a>`**[11]** Iridium / Ground Control. *RockBLOCK 9603*. https://www.iridium.com/products/rockblock-9603
-
-`<a id="ref-12"></a>`**[12]** Starlink. *Starlink Mini specification sheet*. https://starlink.com/public-files/specification_sheet_mini.pdf
-
-`<a id="ref-13"></a>`**[13]** SondeHub flight predictor. https://predict.sondehub.org/ ; habhub predictor. https://predict.habhub.org/
-
-`<a id="ref-14"></a>`**[14]** eCFR. *14 CFR Part 101*. https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-101
-
-`<a id="ref-15"></a>`**[15]** Alba Orbital launch services. https://www.albaorbital.com/launch ; Orbital Today. *Alba Orbital Expands PocketQube Fleet with Latest SpaceX Launch* (2025). https://orbitaltoday.com/2025/03/20/alba-orbital-expands-pocketqube-fleet-with-latest-spacex-launch/
-
-`<a id="ref-16"></a>`**[16]** FCC Part 5 Experimental Licensing. https://www.fcc.gov/space/part-5-experimental-licensing
-
-`<a id="ref-17"></a>`**[17]** FCC. *FCC Adopts New 5-Year Rule for Deorbiting Satellites*. https://www.fcc.gov/document/fcc-adopts-new-5-year-rule-deorbiting-satellites
-
-`<a id="ref-18"></a>`**[18]** ArentFox. *BIS and DDTC Announce New Rules to Modernize Space-Related Export Controls*. https://www.afslaw.com/perspectives/alerts/bis-and-ddtc-announce-new-rules-modernize-space-related-export-controls ; Federal Register. *Export Administration Regulations: Revisions to Space-Related Export Controls*. https://www.federalregister.gov/documents/2024/10/23/2024-23975/export-administration-regulations-revisions-to-space-related-export-controls-including-addition-of
-
-`<a id="ref-19"></a>`**[19]** AWS Ground Station pricing. https://aws.amazon.com/ground-station/pricing/ ; SatNews. *AWS Expands Ground Station as a Service Partner Program with KSAT*. https://news.satnews.com/2025/07/30/aws-expands-ground-station-as-a-service-partner-program-with-ksat/
-
-`<a id="ref-20"></a>`**[20]** SpaceX Rideshare. https://www.spacex.com/rideshare ; New Space Economy. *SpaceX Rideshare Pricing as of February 2026*. https://newspaceeconomy.ca/2026/02/27/spacex-rideshare-pricing-as-of-february-2026-what-it-costs-whats-included-and-how-buyers-budget-a-mission/
-
-`<a id="ref-21"></a>`**[21]** SpaceXStock. *Mars Transfer Windows Investors Guide*. https://spacexstock.com/mars-transfer-windows-investors-guide/
-
-`<a id="ref-22"></a>`**[22]** ESCAPADE Wikipedia. https://en.wikipedia.org/wiki/ESCAPADE
-
-`<a id="ref-23"></a>`**[23]** Orbital Today. *Rocket Lab Proposes Mars Telecommunications Orbiter for NASA's \$700M MTN Mission*. https://orbitaltoday.com/2026/03/03/rocket-lab-proposes-mars-telecommunications-orbiter-for-nasas-700m-mtn-mission/
-
-`<a id="ref-24"></a>`**[24]** SpaceNews. *Impulse and Relativity Target 2026 for Launch of First Mars Lander Mission*. https://spacenews.com/impulse-and-relativity-target-2026-for-launch-of-first-mars-lander-mission/
-
-`<a id="ref-25"></a>`**[25]** Viasat. *Viasat Selected for \$4.8B Ceiling NASA Near Space Network Services Contract*. https://www.viasat.com/news/latest-news/government/2025/viasat-selected-for-4-8b-ceiling-nasa-near-space-network-services-contract/
-
-`<a id="ref-26"></a>`**[26]** National Institute for Physics and Nuclear Engineering — Horia Hulubei (IFIN-HH). https://www.nipne.ro/ ; Extreme Light Infrastructure — Nuclear Physics (ELI-NP). https://www.eli-np.ro/
-
+[^1]: JPL. *Mars Cube One (MarCO)*. https://www.jpl.nasa.gov/missions/mars-cube-one-marco/ — MarCO total program cost \$18.5M (2018).
+    
+[^2]: EIP-6551: *Non-fungible Token Bound Accounts*. https://eips.ethereum.org/EIPS/eip-6551
+    
+[^3]: EIP-5791: *Physical Backed Tokens*. https://github.com/chiru-labs/PBT ; Azuki, *Introducing PBT*. https://www.azuki.com/en/blog/pbt
+    
+[^4]: Cointelegraph. *ERC-404 Token Standard Explained*. https://cointelegraph.com/explained/erc-404-token-standard-explained
+    
+[^5]: Arx Research HaLo chip, Kong Land. https://medium.com/kong-land-embassy/eternal-physical-crypto-b487ee8a1553
+    
+[^6]: Bitcoin Wiki. *Casascius physical bitcoins*. https://en.bitcoin.it/wiki/Casascius_physical_bitcoins
+    
+[^7]: Kong.cash. https://kong.cash/ ; OpenSea ERC-6551 explainer. https://opensea.io/learn/token/what-is-erc-6551
+    
+[^8]: SEC Chairman Atkins. *The SEC's Approach to Digital Assets: Inside Project Crypto*. https://www.sec.gov/newsroom/speeches-statements/atkins-111225-secs-approach-digital-assets-inside-project-crypto ; Skadden. *Howey's Still Here*. https://www.skadden.com/insights/publications/2025/08/howeys-still-here
+    
+[^9]: Blocmates. *Flaunch — Redefining Launchpads with Fixed-Price Fair Launch*. https://www.blocmates.com/articles/flaunch-redefining-launchpads-with-fixed-price-fair-launch
+    
+[^10]: Hackaday. *Flying Cell Towers for Lower Latency*. https://hackaday.com/2026/04/06/flying-cell-towers-for-lower-latency/
+    
+[^11]: Iridium / Ground Control. *RockBLOCK 9603*. https://www.iridium.com/products/rockblock-9603
+    
+[^12]: Starlink. *Starlink Mini specification sheet*. https://starlink.com/public-files/specification_sheet_mini.pdf
+    
+[^13]: SondeHub flight predictor. https://predict.sondehub.org/ ; habhub predictor. https://predict.habhub.org/
+    
+[^14]: eCFR. *14 CFR Part 101*. https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-101
+    
+[^15]: Alba Orbital launch services. https://www.albaorbital.com/launch ; Orbital Today. *Alba Orbital Expands PocketQube Fleet with Latest SpaceX Launch* (2025). https://orbitaltoday.com/2025/03/20/alba-orbital-expands-pocketqube-fleet-with-latest-spacex-launch/
+    
+[^16]: FCC Part 5 Experimental Licensing. https://www.fcc.gov/space/part-5-experimental-licensing
+    
+[^17]: FCC. *FCC Adopts New 5-Year Rule for Deorbiting Satellites*. https://www.fcc.gov/document/fcc-adopts-new-5-year-rule-deorbiting-satellites
+    
+[^18]: ArentFox. *BIS and DDTC Announce New Rules to Modernize Space-Related Export Controls*. https://www.afslaw.com/perspectives/alerts/bis-and-ddtc-announce-new-rules-modernize-space-related-export-controls ; Federal Register. *Export Administration Regulations: Revisions to Space-Related Export Controls*. https://www.federalregister.gov/documents/2024/10/23/2024-23975/export-administration-regulations-revisions-to-space-related-export-controls-including-addition-of
+    
+[^19]: AWS Ground Station pricing. https://aws.amazon.com/ground-station/pricing/ ; SatNews. *AWS Expands Ground Station as a Service Partner Program with KSAT*. https://news.satnews.com/2025/07/30/aws-expands-ground-station-as-a-service-partner-program-with-ksat/
+    
+[^20]: SpaceX Rideshare. https://www.spacex.com/rideshare ; New Space Economy. *SpaceX Rideshare Pricing as of February 2026*. https://newspaceeconomy.ca/2026/02/27/spacex-rideshare-pricing-as-of-february-2026-what-it-costs-whats-included-and-how-buyers-budget-a-mission/
+    
+[^21]: SpaceXStock. *Mars Transfer Windows Investors Guide*. https://spacexstock.com/mars-transfer-windows-investors-guide/
+    
+[^22]: ESCAPADE Wikipedia. https://en.wikipedia.org/wiki/ESCAPADE
+    
+[^23]: Orbital Today. *Rocket Lab Proposes Mars Telecommunications Orbiter for NASA's \$700M MTN Mission*. https://orbitaltoday.com/2026/03/03/rocket-lab-proposes-mars-telecommunications-orbiter-for-nasas-700m-mtn-mission/
+    
+[^24]: SpaceNews. *Impulse and Relativity Target 2026 for Launch of First Mars Lander Mission*. https://spacenews.com/impulse-and-relativity-target-2026-for-launch-of-first-mars-lander-mission/
+    
+[^25]: Viasat. *Viasat Selected for \$4.8B Ceiling NASA Near Space Network Services Contract*. https://www.viasat.com/news/latest-news/government/2025/viasat-selected-for-4-8b-ceiling-nasa-near-space-network-services-contract/
+    
+[^26]: National Institute for Physics and Nuclear Engineering — Horia Hulubei (IFIN-HH). https://www.nipne.ro/ ; Extreme Light Infrastructure — Nuclear Physics (ELI-NP). https://www.eli-np.ro/
+    
 ---
 
 ## Appendix A — Smart Contract Interface
@@ -564,7 +564,7 @@ All contracts audited pre-launch. Deployment transactions Etherscan-verified and
 | GoPro Hero 13 Black                                            | \$400             | \$400             |
 | GoPro Enduro batteries × 4                                    | \$100             | \$100             |
 | Re-Fuel 9 hr extended power pack                               | \$70              | \$70              |
-| RockBLOCK 9603 Iridium SBD[[11]](#ref-11)                         | \$300             | \$400             |
+| RockBLOCK 9603 Iridium SBD[^11]                                | \$300             | \$400             |
 | BigRedBee 2 m APRS transmitter, 5 W                            | \$265             | \$265             |
 | Garmin inReach Mini 2                                          | \$400             | \$400             |
 | Raspberry Pi Zero 2 W flight computer                          | \$25              | \$25              |
@@ -580,18 +580,18 @@ All contracts audited pre-launch. Deployment transactions Etherscan-verified and
 
 ## Appendix C — Phase 2 Mission Parameters
 
-| Parameter                | Phase 2a (PocketQube)             | Phase 2b (3U CubeSat)                      |
-| ------------------------ | --------------------------------- | ------------------------------------------ |
-| Form factor              | 1P (5 × 5 × 5 cm)               | 3U (10 × 10 × 30 cm)                     |
-| Wet mass                 | ~0.25 kg                          | ~4 kg                                      |
-| Orbit                    | ~500 km SSO (Transporter default) | ~500 km SSO, 10:30 LTAN                    |
-| Primary mission duration | 90 days                           | 180 days                                   |
-| Downlink band            | UHF (Alba network)                | S-band                                     |
-| Downlink rate            | 1–9.6 kbps                       | 1–10 Mbps                                 |
-| Daily usable throughput  | Few MB                            | ~1.2 GB                                    |
-| Camera                   | VGA CMOS                          | Simera TriScape 100 or equivalent          |
-| Expected deorbit         | 2–4 years                        | 4–5 years (FCC compliant[[17]](#ref-17))     |
-| Ground segment           | Alba Orbital                      | AWS Ground Station + KSAT Lite[[19]](#ref-19) |
+| Parameter                | Phase 2a (PocketQube)             | Phase 2b (3U CubeSat)               |
+| ------------------------ | --------------------------------- | ----------------------------------- |
+| Form factor              | 1P (5 × 5 × 5 cm)               | 3U (10 × 10 × 30 cm)              |
+| Wet mass                 | ~0.25 kg                          | ~4 kg                               |
+| Orbit                    | ~500 km SSO (Transporter default) | ~500 km SSO, 10:30 LTAN             |
+| Primary mission duration | 90 days                           | 180 days                            |
+| Downlink band            | UHF (Alba network)                | S-band                              |
+| Downlink rate            | 1–9.6 kbps                       | 1–10 Mbps                          |
+| Daily usable throughput  | Few MB                            | ~1.2 GB                             |
+| Camera                   | VGA CMOS                          | Simera TriScape 100 or equivalent   |
+| Expected deorbit         | 2–4 years                        | 4–5 years (FCC compliant[^17])     |
+| Ground segment           | Alba Orbital                      | AWS Ground Station + KSAT Lite[^19] |
 
 ---
 
@@ -633,7 +633,7 @@ All contracts audited pre-launch. Deployment transactions Etherscan-verified and
 
 - **Primary:** X-band IRIS-class transponder, ~100 W EIRP
 - **Secondary:** low-gain S-band for early cruise
-- **Ground:** commercial DSN via Viasat Near Space Network [[25]](#ref-25) or direct NASA DSN contract
+- **Ground:** commercial DSN via Viasat Near Space Network [^25] or direct NASA DSN contract
 - **Achievable data rate at 1 AU:** 1–10 kbps with 34 m ground antenna
 - **Mars-to-Earth one-way light time:** 4–24 minutes depending on geometry
 
